@@ -1,0 +1,1 @@
+Seong-Yoon Shin, Kwang-Seong Shin, Hyun-Chang Lee.(2019).Text Classification Using LSTM-CNN.한국정보통신학회 종합학술대회 논문집,23(2),692-694.

@@ -1,0 +1,1 @@
+C. Rigaud, J. -C. Burie and J. -M. Ogier, "Segmentation-Free Speech Text Recognition for Comic Books," 2017 14th IAPR International Conference on Document Analysis and Recognition (ICDAR), Kyoto, Japan, 2017, pp. 29-34, doi: 10.1109/ICDAR.2017.288.
