@@ -10,9 +10,12 @@
   export let options = [];
   export let fontSize = 16;
   export let value = 0;
+  export {_style as style};
+  export {_class as class};
 
-  let checked = false;
-
+  let _class = "";
+  let _style = "";
+  let checked = true;
 
   const uniqueID = Math.floor(Math.random() * 100)
 
@@ -44,8 +47,7 @@
   </button>
 </div>
 {:else if design == 'slider'}
-<div class="s s--slider" style="font-size:{fontSize}px">
-  <span id={`switch-${uniqueID}`}>{label}</span>
+<div class="s s--slider {_class}" style="font-size:{fontSize}px {_style}">
   <button
       role="switch"
       aria-checked={checked}
@@ -107,7 +109,7 @@
   }
 
   .s--slider button {
-      width: 3em;
+      width: 3.5em;
       height: 1.6em;
       position: relative;
       margin: 0 0 0 0.5em;
@@ -122,7 +124,7 @@
       height: 1.3em;
       background: #fff;
       top: 0.13em;
-      right: 1.5em;
+      right: 2em;
       transition: transform 0.3s;
   }
 
@@ -131,7 +133,7 @@
   }
 
   .s--slider button[aria-checked='true']::before{
-      transform: translateX(1.3em);
+      transform: translateX(1.8em);
       transition: transform 0.3s;
   }
 

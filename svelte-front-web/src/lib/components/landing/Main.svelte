@@ -4,29 +4,35 @@
 </script>
 
 <NarrowContainer>
-  <h1 class="container" in:fade={{ duration: 500 }} out:fade>환영합니다</h1>
+  <h1
+    class="container"
+    in:fade={{ delay:500, duration: 500 }}
+    out:fade={{ duration: 500 }}
+  >
+    환영합니다
+  </h1>
 </NarrowContainer>
 
 <style>
-  .container{
-    margin-top: 50px;
+  .container {
+    margin: 50px 0 50px 0;
     font-size: 250%;
   }
 
   @media (min-width: 576px) {
-		.container {
-			font-size: 400%;
-		}
-	}
-	@media (min-width: 768px) {
-		.container {
-			font-size: 500%;
-		}
-	}
+    .container {
+      font-size: 400%;
+    }
+  }
+  @media (min-width: 768px) {
+    .container {
+      font-size: 500%;
+    }
+  }
   @media (min-width: 1400px) {
-		.container {
+    .container {
       margin-top: 70px;
-			font-size: 600%;
-		}
-	}
+      font-size: 600%;
+    }
+  }
 </style>
