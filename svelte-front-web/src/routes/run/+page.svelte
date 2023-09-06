@@ -1,6 +1,7 @@
 <script>
   import NarrowContainer from "$lib/components/NarrowContainer.svelte";
   import ToggleSwitch from "$lib/components/ToggleSwitch.svelte";
+  import VisionApi from "$lib/components/api/VisionApi.svelte";
   import RunImageBox from "$lib/components/run/RunImageBox.svelte";
   import RunSentenceBox from "$lib/components/run/RunSentenceBox.svelte";
   import CameraIcon from "$lib/images/camera.png";
@@ -54,4 +55,5 @@
       {/if}
     </div>
   </div>
+  <VisionApi bind:imageData={imageSrc}/>
 </NarrowContainer>

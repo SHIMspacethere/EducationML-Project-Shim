@@ -1,6 +1,7 @@
 <script>
   import BaseNavBar from "$lib/components/nav/BaseNavBar.svelte";
   import "./styles.css";
+
 </script>
 
 <div class="app">
@@ -15,4 +16,3 @@
 
   <footer />
 </div>
-
