@@ -50,4 +50,10 @@
     flex: 1;
     max-width: 50%;
   }
+
+  @media (min-width: 768px) {
+    .imageCard {
+      max-width: 33%;
+    }
+  }
 </style>

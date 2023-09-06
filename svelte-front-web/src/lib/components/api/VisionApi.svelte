@@ -13,10 +13,13 @@
     onAuthStateChanged,
   } from "firebase/auth";
   import { text } from "@sveltejs/kit";
+  import { refineText } from "$lib/components/api/refineText.js"
 
   let user = null;
-  let files;
-  $: textLog = "none";
+  export let files;
+  export let isUploadSucceed = false;
+  export let isExtractSucceed = false;
+  export let textLog = "";
   export let isBusy = false;
 
   // Firebase 함수 설정
@@ -49,22 +52,15 @@
           const file = files[0];
           const storage = getStorage();
           const storageRef = ref(storage, "images/" + file.name);
+          isUploadSucceed = true;
           await uploadBytes(storageRef, file);
 
           const result = await annotateImage({
             image_url: "images/" + file.name,
           });
           console.log("Entire text found:", result.data.result);
-          textLog = result.data.result.replace(/\n/g, " ");
-          const cutOffIndex = textLog.indexOf("이다.");
-          if (cutOffIndex !== -1) {
-            textLog = textLog.substring(
-              0,
-              cutOffIndex + "이다.".length
-            );
-          } else {
-            console.log("Phrase not found.");
-          }
+          textLog = refineText(result.data.result);
+          isExtractSucceed = true;
         } catch (error) {
           console.error("Failed to upload image:", error);
         }
@@ -73,17 +69,17 @@
       }
     } else {
       console.warn("You must be logged in to upload an image.");
+      handleGoogleLogin();
     }
     isBusy = false;
   }
 </script>
 
-<input type="file" bind:files accept="image/*" />
-<button on:click={handleImageUpload}>Upload Image</button>
-<button on:click={handleGoogleLogin}>Sign in with Google</button>
-{#if user}
-  <p>Welcome, {user.displayName}!</p>
-{:else}
-  <p>Please sign in to continue.</p>
-{/if}
-{textLog}
+<input
+  id="fileInput"
+  type="file"
+  bind:files
+  accept="image/*"
+  style="display:none;"
+  on:change={handleImageUpload}
+/>

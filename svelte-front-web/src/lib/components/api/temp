@@ -16,7 +16,9 @@
 
   let user = null;
   let files;
-  $: textLog = "none";
+  export let isSucceed = false;
+  export let textLog = "";
+  export let isBusy = false;
 
   // Firebase 함수 설정
   const annotateImage = httpsCallable(functions, "annotateImage");
@@ -29,15 +31,18 @@
   });
 
   async function handleGoogleLogin() {
+    isBusy = true;
     try {
       const result = await signInWithPopup(auth, provider);
       user = result.user;
     } catch (error) {
       console.error("Google Sign-In Error:", error);
     }
+    isBusy = false;
   }
 
   async function handleImageUpload() {
+    isBusy = true;
     if (user) {
       // 로그인 확인
       if (files && files.length > 0) {
@@ -58,6 +63,7 @@
               0,
               cutOffIndex + "이다.".length
             );
+            isSucceed = true;
           } else {
             console.log("Phrase not found.");
           }
@@ -70,15 +76,14 @@
     } else {
       console.warn("You must be logged in to upload an image.");
     }
+    isBusy = false;
   }
 </script>
 
-<input type="file" bind:files accept="image/*" />
-<button on:click={handleImageUpload}>Upload Image</button>
+<input type="file" bind:files accept="image/*" on:change={handleImageUpload} />
 <button on:click={handleGoogleLogin}>Sign in with Google</button>
 {#if user}
   <p>Welcome, {user.displayName}!</p>
 {:else}
   <p>Please sign in to continue.</p>
 {/if}
-{textLog}

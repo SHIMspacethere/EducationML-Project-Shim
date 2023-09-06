@@ -1,55 +1,38 @@
 <script>
-  import NarrowContainer from "$lib/components/NarrowContainer.svelte";
-  import ToggleSwitch from "$lib/components/ToggleSwitch.svelte";
   import CameraIcon from "$lib/images/camera.png";
-  import { fade, fly } from "svelte/transition";
+  import VisionApi from "$lib/components/api/VisionApi.svelte";
 
   let _class = "";
   let _style = "";
   export { _class as class };
   export { _style as style };
 
-  export let file;
+  let files;
+  let isUploadSucceed = false;
+  export let isExtractSucceed = false;
+  export let textLog = "";
+  export let isBusy = false;
   export let isImage = false;
-  export let previewElement;
-  export let imageSrc = "";
+  export let previewImage = CameraIcon;
+  export let boxStyle="";
 
-  function handleFileChange(event) {
-    if (event.target.files.length > 0) {
-      file = event.target.files[0];
-      const fileName = file.name.toLowerCase();
-      if (
-        file &&
-        (fileName.endsWith(".jpg") ||
-          fileName.endsWith(".jpeg") ||
-          fileName.endsWith(".png"))
-      ) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          imageSrc = e.target.result;
-          isImage = true;
-        };
-        reader.readAsDataURL(file);
-      } else {
-        alert("이미지 파일 형식을 넣어주세요.");
-      }
+  $: if (isUploadSucceed) {
+    if (files && files[0]) {
+      previewImage = URL.createObjectURL(files[0]);
     }
-  }
-
-  $: if (isImage && previewElement) {
-    previewElement.src = imageSrc;
+    isImage = true;
+    isUploadSucceed = false;
   }
 </script>
 
-<input
-  type="file"
-  id="fileInput"
-  style="display:none;"
-  accept=".jpg, .jpeg, .png"
-  on:change={handleFileChange}
-/>
-
 <div class={_class} style={_style}>
+  <VisionApi
+    bind:files
+    bind:isUploadSucceed
+    bind:isExtractSucceed
+    bind:textLog
+    bind:isBusy
+  />
   <h3 style="margin-bottom:20px;">1-1) 사진 업로드하기</h3>
 
   <button
@@ -59,13 +42,13 @@
   >
     {#if isImage}
       <img
-        bind:this={previewElement}
+        src={previewImage}
         alt="Preview Image"
-        style="margin:20px; width: 100%; margin: 0 auto; flex:1;"
+        style={boxStyle}
       />
     {:else}
       <img
-        src={CameraIcon}
+        src={previewImage}
         alt="업로드 아이콘"
         style="margin:20px; width: 40%; margin: 0 auto; flex:1;"
       />
@@ -84,12 +67,12 @@
     border-radius: 2%;
     opacity: 80%;
     background-color: transparent;
-    height: 350px;
+    height: 300px;
     overflow: hidden;
   }
   @media (min-width: 576px) {
     .imageBox {
-      height: 300px;
+      height: 400px;
     }
   }
 </style>
