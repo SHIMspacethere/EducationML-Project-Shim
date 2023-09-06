@@ -1,7 +1,9 @@
 <script>
+  import BlackOut from "$lib/components/BlackOut.svelte";
+
 
 </script>
-
+<BlackOut/>
 <div>
   <h1>fdsfsdfdsd</h1>
 </div>

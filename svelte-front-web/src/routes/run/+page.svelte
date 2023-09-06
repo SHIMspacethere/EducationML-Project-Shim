@@ -1,4 +1,5 @@
 <script>
+  import BlackOut from "$lib/components/BlackOut.svelte";
   import NarrowContainer from "$lib/components/NarrowContainer.svelte";
   import ToggleSwitch from "$lib/components/ToggleSwitch.svelte";
   import VisionApi from "$lib/components/api/VisionApi.svelte";
@@ -13,12 +14,17 @@
   let previewElement = "";
   let imageSrc = "";
   let isImage = false;
+
+  let isBusy = false;
 </script>
 
+{#if isBusy}
+  <BlackOut />
+{/if}
 <div style="margin-top:20px" />
 <NarrowContainer style="">
   <div
-    in:fade={{ delay: 500, duration: 500 }}
+    in:fade={{ delay: 0, duration: 1000 }}
     out:fade={{ duration: 500 }}
     class="d-sm-none"
     style="display:flex; align-items: center; margin:10px;"
@@ -55,5 +61,5 @@
       {/if}
     </div>
   </div>
-  <VisionApi bind:imageData={imageSrc}/>
+  <VisionApi bind:imageData={imageSrc} bind:isBusy/>
 </NarrowContainer>

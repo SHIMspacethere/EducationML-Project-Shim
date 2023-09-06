@@ -4,9 +4,11 @@
   import GoogleSDK from "$lib/images/googlesdk.png";
   import TensorFlow from "$lib/images/tensorflow.png";
   import Firebase from "$lib/images/firebase.png";
+  import Vertex from "$lib/images/visionai.png";
+  import Amazon from "$lib/images/amazon.png";
   import { fade, fly } from "svelte/transition";
 
-  const items = [SvelteIcon, GoogleSDK, TensorFlow, Firebase];
+  const items = [SvelteIcon, GoogleSDK, TensorFlow, Firebase, Vertex, Amazon];
 </script>
 
 <NarrowContainer class="container" style="margin-top:20px;">

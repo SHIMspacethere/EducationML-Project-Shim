@@ -6,43 +6,84 @@
     uploadBytes,
     getDownloadURL,
   } from "firebase/storage";
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+  } from "firebase/auth";
+  import { text } from "@sveltejs/kit";
 
+  let user = null;
   let files;
+  $: textLog = "none";
+  export let isBusy = false;
+
+  // Firebase 함수 설정
   const annotateImage = httpsCallable(functions, "annotateImage");
 
-  function readFileAsDataURL(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (event) => resolve(event.target.result);
-      reader.onerror = (error) => reject(error);
-      reader.readAsDataURL(file);
-    });
+  // Firebase 인증 상태 확인
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  onAuthStateChanged(auth, (currentUser) => {
+    user = currentUser;
+  });
+
+  async function handleGoogleLogin() {
+    isBusy = true;
+    try {
+      const result = await signInWithPopup(auth, provider);
+      user = result.user;
+    } catch (error) {
+      console.error("Google Sign-In Error:", error);
+    }
+    isBusy = false;
   }
 
   async function handleImageUpload() {
-    if (files && files.length > 0) {
-      try {
-        const file = files[0]; // 첫 번째 파일 선택
+    isBusy = true;
+    if (user) {
+      // 로그인 확인
+      if (files && files.length > 0) {
+        try {
+          const file = files[0];
+          const storage = getStorage();
+          const storageRef = ref(storage, "images/" + file.name);
+          await uploadBytes(storageRef, file);
 
-        // Firebase Storage에 업로드
-        const storage = getStorage();
-        const storageRef = ref(storage, "images/" + file.name);
-        await uploadBytes(storageRef, file);
-
-        // 다운로드 URL을 얻습니다.
-        const downloadURL = await getDownloadURL(storageRef);
-
-        // Cloud Function 호출
-        const result = await annotateImage({ image_url: downloadURL });
-        console.log("Labels:", result.data);
-      } catch (error) {
-        console.error("Failed to upload image:", error);
+          const result = await annotateImage({
+            image_url: "images/" + file.name,
+          });
+          console.log("Entire text found:", result.data.result);
+          textLog = result.data.result.replace(/\n/g, " ");
+          const cutOffIndex = textLog.indexOf("이다.");
+          if (cutOffIndex !== -1) {
+            textLog = textLog.substring(
+              0,
+              cutOffIndex + "이다.".length
+            );
+          } else {
+            console.log("Phrase not found.");
+          }
+        } catch (error) {
+          console.error("Failed to upload image:", error);
+        }
+      } else {
+        console.warn("No file selected");
       }
     } else {
-      console.warn("No file selected");
+      console.warn("You must be logged in to upload an image.");
     }
+    isBusy = false;
   }
 </script>
 
 <input type="file" bind:files accept="image/*" />
 <button on:click={handleImageUpload}>Upload Image</button>
+<button on:click={handleGoogleLogin}>Sign in with Google</button>
+{#if user}
+  <p>Welcome, {user.displayName}!</p>
+{:else}
+  <p>Please sign in to continue.</p>
+{/if}
+{textLog}
