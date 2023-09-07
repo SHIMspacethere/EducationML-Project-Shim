@@ -5,8 +5,9 @@
   let prediction;
   let inputText = '';
 
+  
   async function loadModel() {
-    model = await tf.loadLayersModel('http://localhost:5173/run/tsjs_model.h5/model.json');
+    model = await tf.loadLayersModel('/models/tsjs_model.h5/model.json');
   }
 
   async function makePrediction() {

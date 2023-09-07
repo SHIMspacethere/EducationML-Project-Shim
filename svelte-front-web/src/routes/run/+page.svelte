@@ -2,6 +2,7 @@
   import BlackOut from "$lib/components/BlackOut.svelte";
   import NarrowContainer from "$lib/components/NarrowContainer.svelte";
   import ToggleSwitch from "$lib/components/ToggleSwitch.svelte";
+  import TensorflowModel from "$lib/components/models/TensorflowModel.svelte";
 
   import RunImageBox from "$lib/components/run/RunImageBox.svelte";
   import RunSentenceBox from "$lib/components/run/RunSentenceBox.svelte";
@@ -90,4 +91,5 @@
       {/if}
     </div>
   </div>
+  <TensorflowModel />
 </NarrowContainer>
