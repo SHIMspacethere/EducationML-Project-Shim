@@ -1,0 +1,38 @@
+[debug] [2023-09-07T12:24:57.118Z] ----------------------------------------------------------------------
+[debug] [2023-09-07T12:24:57.122Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nospa\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only storage
+[debug] [2023-09-07T12:24:57.122Z] CLI Version:   12.5.2
+[debug] [2023-09-07T12:24:57.122Z] Platform:      win32
+[debug] [2023-09-07T12:24:57.123Z] Node Version:  v20.5.1
+[debug] [2023-09-07T12:24:57.123Z] Time:          Thu Sep 07 2023 21:24:57 GMT+0900 (대한민국 표준시)
+[debug] [2023-09-07T12:24:57.123Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-09-07T12:24:57.193Z] Object ".storage" in "firebase.json" has unknown property: {"additionalProperty":"cors"}
+[debug] [2023-09-07T12:24:57.194Z] Field ".storage" in "firebase.json" is possibly invalid: should be array
+[debug] [2023-09-07T12:24:57.194Z] Field ".storage" in "firebase.json" is possibly invalid: should match some schema in anyOf
+[debug] [2023-09-07T12:24:57.199Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-09-07T12:24:57.199Z] > authorizing via signed-in user (nospacethere@gmail.com)
+[debug] [2023-09-07T12:24:57.200Z] [iam] checking project active-module-397909 for permissions ["firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2023-09-07T12:24:57.202Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/active-module-397909:testIamPermissions [none]
+[debug] [2023-09-07T12:24:57.202Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/active-module-397909:testIamPermissions x-goog-quota-user=projects/active-module-397909
+[debug] [2023-09-07T12:24:57.202Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/active-module-397909:testIamPermissions {"permissions":["firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2023-09-07T12:24:58.355Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/active-module-397909:testIamPermissions 200
+[debug] [2023-09-07T12:24:58.355Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/active-module-397909:testIamPermissions {"permissions":["firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'active-module-397909'...
+[info] 
+[info] i  deploying storage 
+[debug] [2023-09-07T12:24:58.358Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/active-module-397909 [none]
+[debug] [2023-09-07T12:24:58.867Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/active-module-397909 200
+[debug] [2023-09-07T12:24:58.867Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/active-module-397909 {"projectId":"active-module-397909","projectNumber":"670731061839","displayName":"EducationML","name":"projects/active-module-397909","resources":{"hostingSite":"active-module-397909","storageBucket":"active-module-397909.appspot.com","locationId":"asia-northeast3"},"state":"ACTIVE","etag":"1_00bfd155-fca7-4941-b58d-99ae39ceeab0"}
+[debug] [2023-09-07T12:24:59.164Z] TypeError [ERR_INVALID_ARG_TYPE]: The "path" argument must be of type string. Received undefined
+    at new NodeError (node:internal/errors:405:5)
+    at validateString (node:internal/validators:162:11)
+    at Object.join (node:path:433:7)
+    at Config.path (C:\Users\nospa\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:123:45)
+    at RulesDeploy.addFile (C:\Users\nospa\AppData\Roaming\npm\node_modules\firebase-tools\lib\rulesDeploy.js:37:46)
+    at default_1 (C:\Users\nospa\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\storage\prepare.js:39:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async chain (C:\Users\nospa\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:38:9)
+    at async deploy (C:\Users\nospa\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:95:5)
+[error] 
+[error] Error: An unexpected error has occurred.

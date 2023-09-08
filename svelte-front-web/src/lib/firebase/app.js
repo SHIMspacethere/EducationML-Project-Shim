@@ -19,5 +19,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const functions = getFunctions(app, 'us-central1');
 const storage = getStorage(app);
+const modelRef = ref(storage, 'tsjs_model.h5/model.json');
 
-export { app, functions, httpsCallable };
+export { app, functions, storage, modelRef, httpsCallable };

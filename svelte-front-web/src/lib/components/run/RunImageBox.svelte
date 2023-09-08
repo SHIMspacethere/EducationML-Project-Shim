@@ -15,6 +15,7 @@
   export let isImage = false;
   export let previewImage = CameraIcon;
   export let boxStyle="";
+  export let preFunction;
 
   $: if (isUploadSucceed) {
     if (files && files[0]) {
@@ -32,6 +33,7 @@
     bind:isExtractSucceed
     bind:textLog
     bind:isBusy
+    {preFunction}
   />
   <h3 style="margin-bottom:20px;">1-1) 사진 업로드하기</h3>
 

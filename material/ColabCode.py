@@ -6,11 +6,13 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 # Switch - Model Creation Bool
-isModelCreation = 1
-isTestDataListed = 1
+isTokenCreation = 1
+isModelCreation = 0
+isTestDataListed = 0
+
 
 # Test Sentence
-new_question = ""
+new_question = "ㄹㅇㄴㄻㄹㄴㄷㄷㄷㄷㄷㅇㄻ"
 new_list = []
 
 # Get Json Data - GoogleDrive
@@ -27,6 +29,11 @@ categories = [item['category'] for item in data]
 tokenizer = Tokenizer(num_words=100, oov_token="<OOV>")
 tokenizer.fit_on_texts(questions)
 sequences = tokenizer.texts_to_sequences(questions)
+
+if (isTokenCreation) :
+  word_index = tokenizer.word_index
+  with open('/content/drive/MyDrive/Colab Notebooks/word_index.json', 'w', encoding='utf-8') as f:
+    json.dump(word_index, f, ensure_ascii=False, indent=4)
 
 # Padding
 padded_sequences = pad_sequences(sequences, padding="post")
@@ -57,6 +64,7 @@ if(isTestDataListed):
   # Tokenization 및 Padding
   new_sequences = tokenizer.texts_to_sequences(new_list)  # [ ] 를 제거했습니다.
   new_padded_sequences = pad_sequences(new_sequences, padding="post", maxlen=X.shape[1])
+  print("maxlen :", X.shape[1])
 
   # 예측 - Prediction
   predictions = model.predict(new_padded_sequences)
@@ -78,7 +86,9 @@ else :
   # Tokenization 및 Padding
   new_sequence = tokenizer.texts_to_sequences([new_question])
   new_padded_sequence = pad_sequences(new_sequence, padding="post", maxlen=X.shape[1])
+  print("maxlen :", X.shape[1])
 
+  
   # 예측 - Prediction
   prediction = model.predict(new_padded_sequence)
 

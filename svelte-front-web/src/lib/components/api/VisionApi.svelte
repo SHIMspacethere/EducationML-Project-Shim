@@ -4,7 +4,6 @@
     getStorage,
     ref,
     uploadBytes,
-    getDownloadURL,
   } from "firebase/storage";
   import {
     getAuth,
@@ -12,7 +11,6 @@
     signInWithPopup,
     onAuthStateChanged,
   } from "firebase/auth";
-  import { text } from "@sveltejs/kit";
   import { refineText } from "$lib/components/api/refineText.js"
 
   let user = null;
@@ -21,6 +19,7 @@
   export let isExtractSucceed = false;
   export let textLog = "";
   export let isBusy = false;
+  export let preFunction;
 
   // Firebase 함수 설정
   const annotateImage = httpsCallable(functions, "annotateImage");
@@ -58,8 +57,8 @@
           const result = await annotateImage({
             image_url: "images/" + file.name,
           });
-          console.log("Entire text found:", result.data.result);
           textLog = refineText(result.data.result);
+          await preFunction();
           isExtractSucceed = true;
         } catch (error) {
           console.error("Failed to upload image:", error);
