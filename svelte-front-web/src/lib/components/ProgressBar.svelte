@@ -7,6 +7,9 @@
   export { _style as style };
   export { _child_style as style_child };
 
+  let container;
+  let containerWidth;
+
   function getClassByValue(value) {
     if (value >= 0 && value < 25) {
       return "bg-danger";
@@ -24,19 +27,25 @@
 </script>
 
 <div
+  bind:this={container}
   class="progress"
   role="progressbar"
   aria-valuenow={value}
   aria-valuemin="0"
   aria-valuemax="100"
-  style={_style}
+  style="{_style} border: 2px solid white;"
 >
   <div
     class="progress-bar progress-bar-striped progress-bar-animated {_class}"
-    style="width: {value}%; {_child_style}"
+    style="width: {value}%; {_child_style};"
   >
     {value}%
   </div>
 </div>
 
+<style>
+  .progress-bar {
+    transition: all 2.0s;
+  }
+</style>
 

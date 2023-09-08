@@ -4,11 +4,10 @@
   import ToggleSwitch from "$lib/components/ToggleSwitch.svelte";
   import TensorflowModel from "$lib/components/models/TensorflowModel.svelte";
   import { fade, fly } from "svelte/transition";
-  
+
   import RunImageBox from "$lib/components/run/RunImageBox.svelte";
   import RunSentenceBox from "$lib/components/run/RunSentenceBox.svelte";
   import RunDescription from "$lib/components/run/RunDescription.svelte";
-
 
   let switchValue = 1;
   let isDebugging = false;
@@ -26,7 +25,7 @@
   let predictionData = [-1, -1];
 
   $: if (isExtractSucceed) {
-    updateLatestText();
+    latestText = isOcrLatest ? ocrText : boxText;
     isExtractSucceed = false;
   }
 
@@ -34,6 +33,11 @@
 
   function updateLatestText() {
     latestText = isOcrLatest ? ocrText : boxText;
+    isPredictionDone = true;
+  }
+
+  function clickRedo() {
+    isPredictionDone = false;
   }
 
   function offOcrBool() {
@@ -67,8 +71,10 @@
 {#if isBusy}
   <BlackOut />
 {/if}
+
 <div style="margin-top:20px" />
 <NarrowContainer style="">
+  {#if !isPredictionDone || predictionData[0] == -1}
   <div
     in:fade={{ delay: 0, duration: 1000 }}
     out:fade={{ duration: 500 }}
@@ -141,7 +147,7 @@
   </div>
   {#if boxText}
     <div
-      in:fly={{ delay: 100, x: -500, duration: 500 }}
+      in:fly={{ delay: 500, x: -500, duration: 500 }}
       out:fly={{ x: 500, duration: 500 }}
     >
       <TensorflowModel
@@ -154,7 +160,15 @@
       />
     </div>
   {/if}
-  {#if predictionData[0] != -1}
-    <RunDescription {predictionData}/>
+
+  {:else}
+  <NarrowContainer style="display:fix;">
+    <div
+      in:fly={{ delay: 500, x: 1000, duration: 1000 }}
+      out:fade={{ duration: 500 }}
+    >
+      <RunDescription {predictionData} preFunction={clickRedo} />
+    </div>
+  </NarrowContainer>
   {/if}
 </NarrowContainer>
