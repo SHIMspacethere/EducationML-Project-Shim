@@ -4,7 +4,7 @@
 
 </script>
 
-<div class="app">
+<div class="app" style="overflow:hidden;">
   <BaseNavBar />
   <slot />
   <head>

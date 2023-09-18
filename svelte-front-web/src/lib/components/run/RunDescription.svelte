@@ -13,6 +13,25 @@
     3 : "Ⅳ. 유전",
     4 : "Ⅴ. 생태계와 상호 작용"
   }
+
+  function getStringByValue() {
+    let value = predictionData[1] * 100;
+    if (value >= 0 && value < 50) {
+      return '"표본이 적어서 정확하질 않습니다..."';
+    } else if (value >= 50 && value < 75) {
+      return '"이 유형이 맞나요?"';
+    } else if (value >= 75 && value < 90) {
+      return '"이 유형일 확률이 높습니다."';
+    } else if (value >= 90 && value < 99) {
+      return '"무엇보다 정확합니다!"';
+    }
+      else if (value >= 99 && value <= 100) {
+      return '"전재산 걸 수 있습니다!!!"';
+    }
+    return '';
+  }
+
+  let comment = getStringByValue();
 </script>
 
 <div
@@ -37,6 +56,8 @@
     {category[predictionData[0]]}
   </h1>
 </div>
+
+<div style="font-style:italic; color:gray;">{comment}</div>
 
 <style>
   .redoBox {
