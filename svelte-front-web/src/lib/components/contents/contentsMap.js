@@ -1,6 +1,7 @@
-import contentsData from "$lib/components/contents/contentsData"
+import contentsData from "$lib/components/contents/contentsData.js"
 const dataMap = new Map();
 const wordMap = new Map();
+const wordList = [];
 
 for (let i = 0; i < contentsData.length; i++)
 {
@@ -8,7 +9,8 @@ for (let i = 0; i < contentsData.length; i++)
   {
     wordMap.set(contentsData[i].key[j], contentsData[i].key[0]);
     dataMap.set(contentsData[i].key[j], contentsData[i].value);
+    wordList.push(contentsData[i].key[j]);
   }
 }
 
-export {dataMap, wordMap};
+export {dataMap, wordMap, wordList};
