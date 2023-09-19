@@ -30,8 +30,8 @@
 <h2>Index : {predictionData[0]}</h2>
 <ProgressBar
   value={predictionData[1].toFixed(2) * 100}
-  style="height: 50px;"
-  style_child="font-size: 30px;"
+  style="height: 50px; margin-bottom:10px;"
+  style_child="font-size: 30px; padding-top:8px;"
 />
 <div style="margin: 10px 0 10px 0;">
   <h1 style="text-align: left;">
