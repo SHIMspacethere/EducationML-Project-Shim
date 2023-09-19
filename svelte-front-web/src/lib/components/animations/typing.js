@@ -8,7 +8,7 @@
 
 const fontColor = ["white", "black"];
 const backColor = ["gray", "white"];
-const timeVal = 30;
+const timeVal = 25;
 const blockClass = "[typingBlock]"
 
 export const typeKorean = () => {

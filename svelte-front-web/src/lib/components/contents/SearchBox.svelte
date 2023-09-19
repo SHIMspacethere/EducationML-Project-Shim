@@ -11,9 +11,18 @@
   }
 </script>
 
-{#each dataList as item, i}
-  <div style="margin-top:10px;">
-    <ContentsCard dataList={item} keywordsList={keywordsList[i]} />
-  </div>
-{/each}
-<div style="margin-bottom:20px;"/>
+<div style="">
+  {#each dataList as item, i}
+    <div class="contentCard" style="margin-top:10px;">
+      <ContentsCard dataList={item} keywordsList={keywordsList[i]} />
+    </div>
+  {/each}
+  <div style="margin-bottom:20px;" />
+</div>
+
+<style>
+  .contentCard {
+    width: 100%;
+    box-sizing: border-box;
+  }
+</style>

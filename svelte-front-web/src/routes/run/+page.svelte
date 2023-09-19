@@ -165,9 +165,9 @@
     <div
       in:fly={{ delay: 500, x: 1000, duration: 1000 }}
       out:fade={{ duration: 500 }}
-      style="display:fix;"
+      style="display:fix; margin-top:20px;"
     >
-      <RunDescription {predictionData} preFunction={clickRedo} />
+      <RunDescription bind:predictionData={predictionData} preFunction={clickRedo} />
     </div>
     <div>
       <SearchBox sentence={latestText} />
