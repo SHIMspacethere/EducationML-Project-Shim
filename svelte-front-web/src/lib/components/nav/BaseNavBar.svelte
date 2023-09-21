@@ -8,9 +8,16 @@
     NavItem,
     NavLink,
   } from "sveltestrap";
+  import { userStore } from '$lib/store.js';
 
+  import { handleGoogleLogout, handleGoogleLogin } from "$lib/firebase/app";
+
+  let isUserLogin = false;
   let isOpen = false;
   const toggle = () => (isOpen = !isOpen);
+  userStore.subscribe(v => {
+    isUserLogin = v? true : false;
+  });
 </script>
 
 <div class="navBar">
@@ -25,11 +32,18 @@
         <NavItem>
           <NavLink href="/run/" on:click={toggle}>run</NavLink>
         </NavItem>
+        <NavItem>
+          {#if isUserLogin}
+            <NavLink on:click={handleGoogleLogout}>로그아웃</NavLink>
+          {:else}
+            <NavLink on:click={handleGoogleLogin}>구글 로그인</NavLink>
+          {/if}
+        </NavItem>
       </Nav>
     </Collapse>
   </Navbar>
 </div>
-<div class="navBarPadding"/>
+<div class="navBarPadding" />
 
 <style>
   .navBar {
@@ -55,7 +69,7 @@
 
     /* tw-bg-white */
     background-color: white;
-    opacity: 0.75;
+    opacity: 0.85;
   }
 
   .navBarPadding {

@@ -1,12 +1,14 @@
 <script>
   import NarrowContainer from "./../NarrowContainer.svelte";
+  import { fade, fly } from "svelte/transition";
+  import { expoInOut } from "svelte/easing";
+
   import SvelteIcon from "$lib/images/svelte.png";
   import GoogleSDK from "$lib/images/googlesdk.png";
   import TensorFlow from "$lib/images/tensorflow.png";
   import Firebase from "$lib/images/firebase.png";
   import Vertex from "$lib/images/visionai.png";
   import Amazon from "$lib/images/amazon.png";
-  import { fade, fly } from "svelte/transition";
 
   const items = [SvelteIcon, GoogleSDK, TensorFlow, Firebase, Vertex, Amazon];
 </script>
@@ -30,7 +32,7 @@
   {#each items as item, i}
     <img
       class="imageCard"
-      in:fly={{ delay: 700 + i * 150, y: 200, duration: 2000 }}
+      in:fly={{ delay: 700 + i * 150, y: 200, duration: 2000, easing:expoInOut }}
       out:fly={{ y: 500, duration: 500 }}
       src={item}
       alt={item}

@@ -1,12 +1,12 @@
 <script>
-  import { fade, fly } from "svelte/transition";
+  import { fade, fly, blur} from "svelte/transition";
   import NarrowContainer from "../NarrowContainer.svelte";
 </script>
 
 <NarrowContainer>
   <h1
     class="container"
-    in:fade={{ delay:500, duration: 500 }}
+    in:blur={{ delay:500, duration: 500}}
     out:fade={{ duration: 500 }}
   >
     환영합니다
@@ -22,17 +22,20 @@
   @media (min-width: 576px) {
     .container {
       font-size: 400%;
+      letter-spacing: 5px;
     }
   }
   @media (min-width: 768px) {
     .container {
       font-size: 500%;
+      letter-spacing: 10px;
     }
   }
   @media (min-width: 1400px) {
     .container {
       margin-top: 70px;
       font-size: 600%;
+      letter-spacing: 20px;
     }
   }
 </style>

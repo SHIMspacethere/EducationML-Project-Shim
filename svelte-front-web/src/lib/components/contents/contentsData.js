@@ -32,8 +32,8 @@ import cellCycle from '$lib/images/contents/cellCycle.png';
 import cellDivision from '$lib/images/contents/cellDivision.png';
 import cellDivisionCycle from '$lib/images/contents/cellDivisionCycle.png';
 import phenotype from '$lib/images/contents/phenotype.png';
-import abnormalChromosome from '$lib/images/contents/abonomalChromosome.png'
-import abnormalDivision from '$lib/images/contents/abonomalDivision.png'
+import abnormalChromosome from '$lib/images/contents/abnormalChromosome.png'
+import abnormalDivision from '$lib/images/contents/abnormalDivision.png'
 import squareSphere from '$lib/images/contents/squareSphere.png';
 import distribution from '$lib/images/contents/distribution.png';
 import transition from '$lib/images/contents/transition.png';
