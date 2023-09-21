@@ -73,7 +73,7 @@
   <BlackOut />
 {/if}
 
-<div style="margin-top:20px" />
+<div style="margin-top:10px" />
 <NarrowContainer style="overflow:hidden;">
   {#if !isPredictionDone || predictionData[0] == -1}
     <div
@@ -82,7 +82,7 @@
       class="d-sm-none"
       style="display:flex; align-items: center; margin:10px;"
     >
-      <h2 style="margin-top:0.5px;">OCR 모드</h2>
+      <h1 style="margin:10px 10px 5px 0px;">OCR 모드</h1>
       <ToggleSwitch
         bind:value={switchValue}
         label=""
@@ -165,7 +165,7 @@
     <div
       in:fly={{ delay: 500, x: 1000, duration: 1000 }}
       out:fade={{ duration: 500 }}
-      style="display:fix; margin-top:20px;"
+      style="display:fix; margin-top:5px;"
     >
       <RunDescription bind:predictionData={predictionData} preFunction={clickRedo} />
     </div>
