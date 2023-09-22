@@ -5,46 +5,27 @@
     ref,
     uploadBytes,
   } from "firebase/storage";
-  import {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged,
-  } from "firebase/auth";
   import { refineText } from "$lib/components/api/refineText.js"
+  import { userStore } from "$lib/store.js";
 
-  let user = null;
+  let isUserLogin = false;
   export let files;
   export let isUploadSucceed = false;
   export let isExtractSucceed = false;
   export let textLog = "";
   export let isBusy = false;
   export let preFunction;
+  
+  userStore.subscribe(v => {
+    isUserLogin = v? true : false;
+  });
 
   // Firebase 함수 설정
   const annotateImage = httpsCallable(functions, "annotateImage");
 
-  // Firebase 인증 상태 확인
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  onAuthStateChanged(auth, (currentUser) => {
-    user = currentUser;
-  });
-
-  async function handleGoogleLogin() {
-    isBusy = true;
-    try {
-      const result = await signInWithPopup(auth, provider);
-      user = result.user;
-    } catch (error) {
-      console.error("Google Sign-In Error:", error);
-    }
-    isBusy = false;
-  }
-
   async function handleImageUpload() {
     isBusy = true;
-    if (user) {
+    if (isUserLogin) {
       // 로그인 확인
       if (files && files.length > 0) {
         try {
@@ -68,7 +49,6 @@
       }
     } else {
       console.warn("You must be logged in to upload an image.");
-      handleGoogleLogin();
     }
     isBusy = false;
   }

@@ -1,21 +1,12 @@
 <script>
   import { fade, fly } from "svelte/transition";
-  
-  export let zIndex = 100;
-	export let onClose = () => {
-		
-	};
+  import gear from "$lib/images/gear.png";
+  import BlackOut from "./BlackOut.svelte";
 </script>
 
-<div
-  class="black"
-  in:fade={{ delay: 0, duration: 500 }}
-  out:fade={{ duration: 500 }}
-  style="z-index:{zIndex}"
-  on:click={onClose}
->
-  <slot />
-</div>
+<BlackOut>
+  <img class="loading" src={gear} alt="loading" />
+</BlackOut>
 
 <style>
   .black {
@@ -27,9 +18,20 @@
     background-color: black;
     opacity: 0.6;
     position: fixed;
+    z-index: 100;
     display: flex;
     justify-content: center;
     vertical-align: middle;
+  }
+
+  .loading {
+    margin: 100px;
+    animation: rotate_image 6s linear infinite;
+    transform-origin: 50% 50%;
+    position: fixed;
+    opacity: 1;
+    flex: 1;
+    width: 33%;
   }
 
   @keyframes rotate_image {

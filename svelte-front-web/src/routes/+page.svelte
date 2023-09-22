@@ -1,4 +1,5 @@
 <script>
+  import BlackOut from "$lib/components/BlackOut.svelte";
   import Main from "$lib/components/landing/Main.svelte";
   import MainBottom from "$lib/components/landing/MainBottom.svelte";
   import { fade, fly } from "svelte/transition";
@@ -19,9 +20,7 @@
     <MainBottom />
   </section>
 {:else}
-  <div class="black" on:click={mainClick}
-  in:fade={{ duration: 500 }}
-  out:fade={{ duration: 500 }}/>
+  <BlackOut onClose={mainClick} zIndex=30 />  
 {/if}
 
 <style>
@@ -31,20 +30,5 @@
     justify-content: center;
     align-items: center;
     flex: 0.6;
-  }
-
-  .black {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow-y: hidden;
-    background-color: black;
-    opacity: 0.6;
-    position: fixed;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    vertical-align: middle;
   }
 </style>

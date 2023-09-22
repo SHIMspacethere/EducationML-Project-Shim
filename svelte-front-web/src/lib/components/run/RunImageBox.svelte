@@ -2,14 +2,9 @@
   import CameraIcon from "$lib/images/camera.png";
   import VisionApi from "$lib/components/api/VisionApi.svelte";
   import LoginPopup from "$lib/components/account/LoginPopup.svelte";
-  import {
-    getAuth,
-    GoogleAuthProvider,
-    signInWithPopup,
-    onAuthStateChanged,
-  } from "firebase/auth";
+  import { userStore } from "$lib/store.js";
 
-  let user = null;
+  let isUserLogin = false;
   let isLoginPopup = false;
   let _class = "";
   let _style = "";
@@ -26,14 +21,12 @@
   export let boxStyle = "";
   export let preFunction;
 
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
-  onAuthStateChanged(auth, (currentUser) => {
-    user = currentUser;
+  userStore.subscribe(v => {
+    isUserLogin = v? true : false;
   });
 
   function clickUpload() {
-    if (user) document.getElementById("fileInput").click();
+    if (isUserLogin) document.getElementById("fileInput").click();
     else isLoginPopup = true;
   }
 

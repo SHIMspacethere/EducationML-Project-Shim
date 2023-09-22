@@ -1,5 +1,5 @@
 <script>
-  import BlackOut from "$lib/components/BlackOut.svelte";
+  import BlackOutLoading from "$lib/components/BlackOutLoading.svelte";
   import NarrowContainer from "$lib/components/NarrowContainer.svelte";
   import ToggleSwitch from "$lib/components/ToggleSwitch.svelte";
   import TensorflowModel from "$lib/components/models/TensorflowModel.svelte";
@@ -70,7 +70,7 @@
 {/if}
 
 {#if isBusy}
-  <BlackOut />
+  <BlackOutLoading />
 {/if}
 
 <div style="margin-top:10px" />

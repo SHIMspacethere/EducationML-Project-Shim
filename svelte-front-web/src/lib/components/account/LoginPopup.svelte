@@ -2,31 +2,42 @@
   import GoogleLogo from "$lib/images/googleLogo.png";
   import { handleGoogleLogin } from "$lib/firebase/app";
   import { fade, fly } from "svelte/transition";
+  import BlackOut from "../BlackOut.svelte";
 
   export let text = "OCR 기능을 이용하기 위해서는 구글 로그인을 해야합니다.";
   export let isPopup = true;
+  let isBusy = false;
+  let zIndex = 50;
 
   function closePopup() {
-    isPopup = false;
+    if (!isBusy) isPopup = false;
+  }
+
+  async function clickLogin() {
+    if (!isBusy) {
+      isBusy = true;
+      zIndex = 100;
+      try {
+        await handleGoogleLogin();
+      } catch (error) {
+        console.error("Error during login:", error);
+        isBusy = false;
+        zIndex = 50;
+      }
+      zIndex = 50;
+      isBusy = false;
+      closePopup();
+    }
   }
 </script>
 
-<div
-  class="black"
-  on:click={closePopup}
-  in:fade={{ duration: 500 }}
-  out:fade={{ duration: 500 }}
-/>
-<div
-  class="loginBox"
-  in:fade={{ duration: 500 }}
-  out:fade={{ duration: 500 }}
->
+<BlackOut {zIndex} onClose={closePopup} />
+<div class="loginBox" in:fade={{ duration: 500 }} out:fade={{ duration: 500 }}>
   <h4 style="word-break: keep-all; line-height: 180%;">
     {text}
   </h4>
   <button
-    on:click={handleGoogleLogin}
+    on:click={clickLogin}
     style="margin-top:20px; border:0; background-color:transparent;"
   >
     <img src={GoogleLogo} style="width:100%;" alt="Google Login" />
@@ -36,8 +47,8 @@
 <style>
   .loginBox {
     top: 20%;
-    left: 0;
-    display: absolute;
+    left: 50%;
+    transform: translate(-50%, -20%);
     position: fixed;
     justify-content: center;
     vertical-align: middle;
@@ -51,26 +62,11 @@
     border-radius: 5%;
   }
 
-  .black {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow-y: hidden;
-    background-color: black;
-    opacity: 0.6;
-    position: fixed;
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    vertical-align: middle;
-  }
-
   @media (min-width: 576px) {
-		.loginBox {
+    .loginBox {
       top: 30%;
-    left: 50%;
-    width: 400px;
-		}
-	}
+      left: 50%;
+      width: 400px;
+    }
+  }
 </style>
