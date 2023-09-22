@@ -169,7 +169,7 @@
     >
       <RunDescription bind:predictionData={predictionData} preFunction={clickRedo} />
     </div>
-    <div>
+    <div style="margin-bottom: 30px;">
       <SearchBox sentence={latestText} />
     </div>
   {/if}

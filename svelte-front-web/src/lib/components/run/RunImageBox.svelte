@@ -3,6 +3,7 @@
   import VisionApi from "$lib/components/api/VisionApi.svelte";
   import LoginPopup from "$lib/components/account/LoginPopup.svelte";
   import { userStore } from "$lib/store.js";
+  import InfoBox from "../infoBox.svelte";
 
   let isUserLogin = false;
   let isLoginPopup = false;
@@ -37,6 +38,9 @@
     isImage = true;
     isUploadSucceed = false;
   }
+
+  const title = "1-1) 사진 올리기";
+  const content = "구글 로그인을 먼저 한 다음에 OCR 기능을 이용할 수 있습니다. 이미지 파일을 업로드한 후, 첫 문단의 내용을 가져옵니다.";
 </script>
 
 {#if isLoginPopup}
@@ -51,7 +55,11 @@
     bind:isBusy
     {preFunction}
   />
-  <h3 style="margin-bottom:20px;">1-1) 사진 업로드하기</h3>
+  <div style="display: flex; align-items:center; margin-bottom:10px;">
+    <h2 style="margin-top:10px; display:inline-block;">{title}</h2>
+    <InfoBox {title} {content} />
+  </div>
+
   <div style="">
     <button
       class="imageBox"

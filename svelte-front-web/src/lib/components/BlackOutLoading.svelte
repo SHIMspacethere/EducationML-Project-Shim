@@ -9,21 +9,6 @@
 </BlackOut>
 
 <style>
-  .black {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    overflow-y: hidden;
-    background-color: black;
-    opacity: 0.6;
-    position: fixed;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    vertical-align: middle;
-  }
-
   .loading {
     margin: 100px;
     animation: rotate_image 6s linear infinite;
