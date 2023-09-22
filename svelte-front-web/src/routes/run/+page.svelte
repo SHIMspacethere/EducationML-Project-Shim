@@ -8,6 +8,7 @@
   import RunImageBox from "$lib/components/run/RunImageBox.svelte";
   import RunSentenceBox from "$lib/components/run/RunSentenceBox.svelte";
   import RunDescription from "$lib/components/run/RunDescription.svelte";
+  import RunCollector from "$lib/components/run/RunCollector.svelte";
   import SearchBox from "$lib/components/contents/SearchBox.svelte";
 
   let switchValue = 1;
@@ -98,6 +99,7 @@
     >
       둘 중 하나를 택하시면 됩니다.
     </h3>
+    <RunCollector bind:isBusy bind:isExtractSucceed bind:previewImage bind:isImage bind:textLog={ocrText} preFunction={onOcrBool}/>
     <div
       in:fly={{ delay: 700, y: 500, duration: 1000 }}
       out:fly={{ y: 500, duration: 500 }}

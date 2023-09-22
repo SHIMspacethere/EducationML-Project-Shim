@@ -1,16 +1,13 @@
-<script>
-  import { functions, httpsCallable } from "$lib/firebase/app.js";
+import { functions, httpsCallable } from "$lib/firebase/app.js";
   import { getStorage, ref, uploadBytes } from "firebase/storage";
   import { refineText } from "$lib/components/api/refineText.js";
   import { userStore } from "$lib/store.js";
 
   let isUserLogin = false;
-  export let files;
-  export let isUploadSucceed = false;
-  export let isExtractSucceed = false;
-  export let textLog = "";
-  export let isBusy = false;
-  export let preFunction;
+  let isUploadSucceed = false;
+  let isExtractSucceed = false;
+  let textLog = "";
+  let isBusy = false;
 
   userStore.subscribe((v) => {
     isUserLogin = v ? true : false;
@@ -19,23 +16,24 @@
   // Firebase 함수 설정
   const annotateImage = httpsCallable(functions, "annotateImage");
 
-  async function handleImageUpload(obj) {
+  async function handleStaticUpload(obj, name) {
     isBusy = true;
     if (isUserLogin) {
-      if (obj && obj.length > 0) {
+      console.log(obj);
+      if (obj) {
         try {
-          const file = obj[0];
+          const file = obj;
           const storage = getStorage();
-          const storageRef = ref(storage, "images/" + file.name);
+          const storageRef = ref(storage, "images/" + name);
+          console.log(name);
           isUploadSucceed = true;
           await uploadBytes(storageRef, file);
-
           const result = await annotateImage({
-            image_url: "images/" + file.name,
+            image_url: "images/" + name,
           });
           textLog = refineText(result.data.result);
-          await preFunction();
           isExtractSucceed = true;
+          return [isUploadSucceed, isExtractSucceed, textLog];
         } catch (error) {
           console.error("Failed to upload image:", error);
         }
@@ -48,13 +46,4 @@
     isBusy = false;
   }
 
-</script>
-
-<input
-  id="fileInput"
-  type="file"
-  bind:files
-  accept="image/*"
-  style="display:none;"
-  on:change={handleImageUpload(files)}
-/>
+  export { handleStaticUpload }
