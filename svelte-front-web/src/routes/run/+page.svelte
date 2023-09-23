@@ -74,7 +74,7 @@
   <BlackOutLoading />
 {/if}
 
-<div style="margin-top:10px" />
+<div style="" />
 <NarrowContainer style="overflow:hidden;">
   {#if !isPredictionDone || predictionData[0] == -1}
     <div
@@ -91,7 +91,7 @@
         design="slider"
       />
     </div>
-    <div style="margin-top:20px" />
+    <div style="margin-top:10px" />
     <h3
       class="d-none d-sm-block"
       in:fly={{ delay: 500, y: 500, duration: 1000 }}
@@ -105,7 +105,7 @@
       out:fly={{ y: 500, duration: 500 }}
     >
       <!---- PC mode (from sm-size) ----->
-      <div class="d-none d-sm-flex" style="margin-top:20px;">
+      <div class="d-none d-sm-flex" style="margin-top:10px;">
         <RunImageBox
           style="flex: 1; margin:10px;"
           bind:isBusy

@@ -2,6 +2,7 @@
   import { fade, fly } from "svelte/transition";
   
   export let zIndex = 100;
+  export let opacity = 0.6;
 	export let onClose = () => {
 		
 	};
@@ -11,7 +12,7 @@
   class="black"
   in:fade={{ delay: 0, duration: 500 }}
   out:fade={{ duration: 500 }}
-  style="z-index:{zIndex}"
+  style="z-index:{zIndex}; opacity:{opacity}"
   on:click={onClose}
 >
   <slot />
@@ -25,7 +26,6 @@
     height: 100vh;
     overflow-y: hidden;
     background-color: black;
-    opacity: 0.6;
     position: fixed;
     display: flex;
     justify-content: center;

@@ -19,13 +19,11 @@ import { functions, httpsCallable } from "$lib/firebase/app.js";
   async function handleStaticUpload(obj, name) {
     isBusy = true;
     if (isUserLogin) {
-      console.log(obj);
       if (obj) {
         try {
           const file = obj;
           const storage = getStorage();
           const storageRef = ref(storage, "images/" + name);
-          console.log(name);
           isUploadSucceed = true;
           await uploadBytes(storageRef, file);
           const result = await annotateImage({

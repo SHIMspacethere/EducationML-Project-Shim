@@ -10,7 +10,7 @@
     isOpen = true;
   }
 
-  setTimeout(mainClick, 1000);
+  setTimeout(mainClick, 500);
 </script>
 
 {#if isOpen}
@@ -20,7 +20,7 @@
     <MainBottom />
   </section>
 {:else}
-  <BlackOut onClose={mainClick} zIndex=30 />  
+  <BlackOut onClose={mainClick} zIndex=30 opacity=0.1 />  
 {/if}
 
 <style>
