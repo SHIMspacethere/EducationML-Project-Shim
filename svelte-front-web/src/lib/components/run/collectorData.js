@@ -1,8 +1,8 @@
-const c2409 = import.meta.glob('$lib/images/collector/c2409/*.jpg');
-const c2406 = import.meta.glob('$lib/images/collector/c2406/*.png');
-const c2311 = import.meta.glob('$lib/images/collector/c2311/*.png');
-const c2309 = import.meta.glob('$lib/images/collector/c2309/*.png');
-const c2306 = import.meta.glob('$lib/images/collector/c2306/*.png');
+const c2409 = import.meta.glob('/src/lib/images/collector/c2409/*.jpg');
+const c2406 = import.meta.glob('/src/lib/images/collector/c2406/*.png');
+const c2311 = import.meta.glob('/src/lib/images/collector/c2311/*.png');
+const c2309 = import.meta.glob('/src/lib/images/collector/c2309/*.png');
+const c2306 = import.meta.glob('/src/lib/images/collector/c2306/*.png');
 
 const data = [{
   category: "2024학년도 9월 모의평가",
