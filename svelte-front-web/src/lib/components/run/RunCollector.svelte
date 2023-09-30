@@ -1,6 +1,6 @@
 <script>
   import BlackOut from "../BlackOut.svelte";
-  import collectorData from "$lib/components/run/collectorData.js";
+  import collectorData from "$lib/components/contents/collectorData.js";
   import { handleStaticUpload } from "../api/uploadStatic.js";
   import { fade, fly } from "svelte/transition";
   import LoginPopup from "../account/LoginPopup.svelte";
