@@ -3,7 +3,7 @@
   import AboutPage01 from "$lib/components/about/AboutPage01.svelte";
   import AboutPage02 from "$lib/components/about/AboutPage02.svelte";
   import AboutProgressionBar from "$lib/components/about/AboutProgressionBar.svelte";
-  import BlackOut from "$lib/components/BlackOut.svelte";
+
 
   let title = ["배경", "소개", "AI", "방법", "끝"];
   let index = 0;
@@ -17,7 +17,9 @@
 </script>
 
 <div class="back" />
-<AboutProgressionBar bind:this={proBarComponent} contents={title} bind:index />
+<div style="position:fixed; top:10; z-index:30; width:100%;">
+  <AboutProgressionBar bind:this={proBarComponent} contents={title} bind:index />
+</div>
 {#if index == 0}
   <AboutPage01 onClose={plusIndex} />
 {:else if index == 1}

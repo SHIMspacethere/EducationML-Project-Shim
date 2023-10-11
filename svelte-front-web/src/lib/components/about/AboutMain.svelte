@@ -8,7 +8,6 @@
   in:fade={{ delay: 500, duration: 500 }}
   out:fade={{ duration: 500 }}
 >
-  
 </div>
 
 <style>
