@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 global X, y, model, tokenizer, padded_sequences, questions, categories
 
 # Get Json Data - GoogleDrive
-file_path = "/content/drive/MyDrive/Colab Notebooks/data/data.json"
+file_path = "/content/drive/MyDrive/Colab Notebooks/data/data231031.json"
 
 with open(file_path, "r") as f:
     data = json.load(f)
@@ -66,10 +66,12 @@ def modelCreation():
   optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)
   model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 
-def modelTrain() :
-  global X, y, model
-  print("크기:", len(X), len(y))
-  model.fit(X, y, epochs=5)
+def modelTrain(validation_data=None):
+    global X, y, model
+    if validation_data:
+        model.fit(X, y, epochs=5, validation_data=validation_data)
+    else:
+        model.fit(X, y, epochs=5)
 
 # 예측 결과를 해석
 def modelPrediction():
@@ -93,14 +95,17 @@ def modelPrediction():
 
   print("전체:", len(predictions), " / 정답:", count, " ===> ", "정확도:", 100*count/len(predictions),"%")
 
+# <------------------ <Test> ------------------->
 setClass(train_data, train=True)
 print("---------- <Train> ----------")
 modelCreation()
 modelTrain()
+
 setClass(val_data)
 print("---------- <Validation> ----------")
-modelTrain()
+modelTrain(validation_data=(X, y))
 modelPrediction()
+
 setClass(test_data)
 print("---------- <Test> ----------")
 modelPrediction()
