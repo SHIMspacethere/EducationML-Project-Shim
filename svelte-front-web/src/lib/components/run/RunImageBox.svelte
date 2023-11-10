@@ -39,7 +39,7 @@
     isUploadSucceed = false;
   }
 
-  const title = "1-1) 사진 올리기";
+  const title = "1-1) 사진 업로드";
   const content = "구글 로그인을 먼저 한 다음에 OCR 기능을 이용할 수 있습니다. 이미지 파일을 업로드한 후, 첫 문단의 내용을 가져옵니다.";
 </script>
 

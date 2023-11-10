@@ -8,7 +8,7 @@
   export {_style as style};
   export let boxStyle="";
 
-  const title = "1-2) 구문 입력하기";
+  const title = "1-2) 구문 입력";
   const content = "OCR 기능을 이용하지 않고 구문을 직접 작성합니다. 또는 사진을 통해 받아온 텍스트 문구를 수정할 수도 있습니다."
 </script>
 
