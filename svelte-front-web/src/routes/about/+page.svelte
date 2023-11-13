@@ -1,7 +1,7 @@
 <script>
   import AboutMain from "$lib/components/about/AboutMain.svelte";
   import AboutPage01 from "$lib/components/about/AboutPage01.svelte";
-  import AboutPage02 from "$lib/components/about/AboutPage02.svelte";
+  import AboutPage02 from "$lib/components/about/AboutPage03.svelte";
   import AboutProgressionBar from "$lib/components/about/AboutProgressionBar.svelte";
 
 
