@@ -8,7 +8,7 @@
 
   export let onClose = () => {};
   let count = 0;
-  const max = 3;
+  const max = 4;
   let intervalFunc;
 
   function clickBoard() {
@@ -34,16 +34,19 @@
   <div style="position:relative; z-index:3; color:white;">
     <div style="margin-top: 120px; text-align:center; word-break:keep-all;">
       {#if count >= 1}
-        <H2>교육업계의 LMS(학습관리시스템)에 AI를 더해보자는 생각으로,
+        <H2>사용자가 문제 사진을 찍어 웹에 업로드합니다.
         </H2>
       {/if}
       {#if count >= 2}
-        <H2>수능 문제를 읽어 유형을 분류하는 모델을 구현하고자 했습니다.</H2>
+        <H2>구글 Vertex OCR로부터 문장을 읽어 해당 문제의 유형을 판단합니다.</H2>
       {/if}
+      {#if count >= 3}
+      <H2>반환된 문제 유형과 특정 단어들로, 풀이에 도움이 되는 정보들을 얻을 수 있습니다.</H2>
+    {/if}
       <div style="margin-top:50px;" />
     </div>
     <div style="margin-top:100px;" />
-    {#if count >= 3}
+    {#if count >= 4}
       <div
         class="d-block d-md-flex"
         style="display:flex; gap:100px; justify-content:center;"

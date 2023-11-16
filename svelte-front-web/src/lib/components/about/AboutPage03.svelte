@@ -34,11 +34,11 @@
   <div style="position:relative; z-index:3; color:white;">
     <div style="margin-top: 120px; text-align:center; word-break:keep-all;">
       {#if count >= 1}
-        <H2>교육업계의 LMS(학습관리시스템)에 AI를 더해보자는 생각으로,
+        <H2>생명과학 I 문제 5,000개의 데이터를 모아 모델 평가를 진행했습니다.
         </H2>
       {/if}
       {#if count >= 2}
-        <H2>수능 문제를 읽어 유형을 분류하는 모델을 구현하고자 했습니다.</H2>
+        <H2>Grid-Search 알고리즘을 통해 정확도 점수가 가장 높은 CNN 모델을 선별했습니다.</H2>
       {/if}
       <div style="margin-top:50px;" />
     </div>

@@ -8,7 +8,7 @@
 
   export let onClose = () => {};
   let count = 0;
-  const max = 3;
+  const max = 2;
   let intervalFunc;
 
   function clickBoard() {
@@ -34,16 +34,13 @@
   <div style="position:relative; z-index:3; color:white;">
     <div style="margin-top: 120px; text-align:center; word-break:keep-all;">
       {#if count >= 1}
-        <H2>교육업계의 LMS(학습관리시스템)에 AI를 더해보자는 생각으로,
+        <H2>자, 한번 만나러 가보실까요?
         </H2>
-      {/if}
-      {#if count >= 2}
-        <H2>수능 문제를 읽어 유형을 분류하는 모델을 구현하고자 했습니다.</H2>
       {/if}
       <div style="margin-top:50px;" />
     </div>
     <div style="margin-top:100px;" />
-    {#if count >= 3}
+    {#if count >= 2}
       <div
         class="d-block d-md-flex"
         style="display:flex; gap:100px; justify-content:center;"
