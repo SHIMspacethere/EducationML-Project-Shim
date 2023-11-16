@@ -27,9 +27,6 @@
     <Collapse {isOpen} navbar>
       <Nav navbar>
         <NavItem>
-          <NavLink href="/about/" on:click={toggle}>about</NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink href="/run/" on:click={toggle}>run</NavLink>
         </NavItem>
         <NavItem>
