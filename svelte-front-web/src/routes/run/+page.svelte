@@ -40,6 +40,7 @@
 
   function clickRedo() {
     isPredictionDone = false;
+    predictionData = [-1, -1];
   }
 
   function offOcrBool() {
@@ -172,7 +173,7 @@
       <RunDescription bind:predictionData={predictionData} preFunction={clickRedo} />
     </div>
     <div style="margin-bottom: 30px;">
-      <SearchBox sentence={latestText} />
+      <SearchBox bind:predictionData={predictionData} sentence={latestText} />
     </div>
   {/if}
 </NarrowContainer>

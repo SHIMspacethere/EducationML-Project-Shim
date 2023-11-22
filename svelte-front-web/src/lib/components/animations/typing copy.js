@@ -7,7 +7,7 @@
 // ex) svelte - onMount() 내에서 typeKorean() 실행.
 
 const fontColor = ["white", "black"];
-const backColor = ["gray", "white"];
+const backColor = ["gray", "transparent"];
 const timeVal = 35;
 const blockClass = "[typingBlock]"
 
